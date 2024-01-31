@@ -5,13 +5,14 @@ export default function Search({getWeather}) {
 
   const [canFetch, setCanFetch] = useState(true);
   const [cityData, setCityData] = useState([]);
+  const [currentCity, setCurrentCity] = useState(null);
 
   async function fetchCity(input) {
     try {
       const url = geoDB.url + `?namePrefix=${input}`;
       const response = await fetch(url, geoDB.options);
       const result = await response.json();
-      if (result.data)
+      if (result.data) {
         setCityData(result.data.map((x)=>{
           return {
             id: x.id,
@@ -20,8 +21,17 @@ export default function Search({getWeather}) {
             location: {lat: x.latitude, lon: x.longitude}
           }
         }));
+      }
     }catch(error) {
       console.log(error);
+    }
+  }
+
+  function submitCityData(data) {
+    if (cityData.length > 0) {
+      getWeather(data);
+      setCityData([]);
+      setCurrentCity(data.name);
     }
   }
 
@@ -36,17 +46,20 @@ export default function Search({getWeather}) {
   }
 
   const handleKeyPress = (e) => {
-    if (e.key == "Enter" && cityData.length > 0 ) {
-      getWeather(cityData[0]);
+    if (e.key == "Enter") {
+      submitCityData(cityData[0]);
     }
   }
 
   return (
    <>
       <input onKeyPress={handleKeyPress} onChange={handleSearchChange} type="text" id="search" />
-      {cityData.length > 0 && cityData.map((x) => {
-        return ( <p key={x.id}>{x.name}</p> )
-      })}
+      <div id="dropdown">
+        {cityData.length > 0 && cityData.map((x) => {
+          return ( <p onClick={()=>{submitCityData(x)}} key={x.id}>{x.name}</p> )
+        })}
+      </div>
+      {currentCity && <p>{currentCity}</p>}
    </>
   )
 }
