@@ -1,17 +1,21 @@
-export default function Current({current}) {
+export default function Current({current, convertTemp}) {
   return (
     <div>
       <div>
         <img src="" alt="weather-icon"/>
         <section>
-          <h1>{current.main.temp}</h1>
+          <h1>{convertTemp(current.main.temp)}</h1>
           <p>{current.weather[0].main}</p>
-          <p><span>{current.main.temp_min}</span>/<span>{current.main.temp_max}</span></p>
+          <p>
+            <span>{convertTemp(current.main.temp_min)}</span>
+            /
+            <span>{convertTemp(current.main.temp_max)}</span></p>
+
         </section>
       </div>
       <div>
         <section>
-          <h2>FEELS LIKE <span>{current.main.feels_like}</span></h2>
+          <h2>FEELS LIKE <span>{convertTemp(current.main.feels_like)}</span></h2>
           <div>
             <p>{current.wind.speed}</p>
             <p>WIND</p>

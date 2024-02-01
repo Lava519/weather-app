@@ -8,7 +8,7 @@ import './App.css'
 function App() {
   const [current, setCurrent] = useState(null);
   const [forecast, setForecast] = useState(null);
-
+  const [celsius, setCelsius] = useState(true);
   function forecastSetup(f) {
     let forecastDivided = new Array(6);
     for (let i = 0; i < forecastDivided.length; i++)
@@ -23,6 +23,12 @@ function App() {
       }
     }
     setForecast(forecastDivided);
+  }
+
+  const convertTemp = (temp) => {
+    if (celsius)
+      return Math.round(temp - 273.15)+"°C";
+    return Math.round(9/5*(temp-273.15)+32)+"F" 
   }
 
   async function fetchWeather(location) {
@@ -46,12 +52,11 @@ function App() {
     fetchWeather(city.location);
   }
 
-
   return (
     <>
       <Search getWeather={getWeather}></Search>
-      {current && <Current current={current}></Current>}
-      {forecast && <Forecast forecast={forecast}></Forecast>}
+      {current && <Current current={current} convertTemp={convertTemp}></Current>}
+      {forecast && <Forecast forecast={forecast} convertTemp={convertTemp}></Forecast>}
     </>
   )
 }

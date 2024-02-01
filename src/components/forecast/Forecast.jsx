@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Forecast({forecast}) {
+export default function Forecast({forecast, convertTemp}) {
   
   const [day, setDay] = useState(0);
 
@@ -22,7 +22,7 @@ export default function Forecast({forecast}) {
         {forecast[day].map((x) => {
           return (
           <div key={x.dt}> 
-            <p>{x.main.temp}</p>
+            <p>{convertTemp(x.main.temp)}</p>
           </div>)
         })}
       </div>
