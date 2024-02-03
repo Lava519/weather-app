@@ -21,8 +21,12 @@ export default function Forecast({forecast, convertTemp}) {
       <div>
         {forecast[day].map((x) => {
           return (
-          <div key={x.dt}> 
-            <p>{convertTemp(x.main.temp)}</p>
+          <div key={x.dt}>
+            <img src={x.weather[0].icon+".svg"}/>
+            <section>
+              <h2>{x.dt_txt.slice(-8, -3)}</h2>
+              <p>{convertTemp(x.main.temp)}</p>
+            </section>
           </div>)
         })}
       </div>

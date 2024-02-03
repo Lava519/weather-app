@@ -2,7 +2,7 @@ export default function Current({current, convertTemp}) {
   return (
     <div>
       <div>
-        <img src="" alt="weather-icon"/>
+        <img src={current.weather[0].icon+".svg"} alt="weather-icon"/>
         <section>
           <h1>{convertTemp(current.main.temp)}</h1>
           <p>{current.weather[0].main}</p>
