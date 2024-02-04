@@ -1,31 +1,32 @@
 import { useState } from "react";
+import "./Forecast.css";
 
 export default function Forecast({forecast, convertTemp}) {
   
   const [day, setDay] = useState(0);
 
   return (
-    <div>
-      <div>
-        <div></div>
-        <div>
-          <a onClick={()=>{setDay(0)}}>o</a>
-          <a onClick={()=>{setDay(1)}}>o</a>
-          <a onClick={()=>{setDay(2)}}>o</a>
-          <a onClick={()=>{setDay(3)}}>o</a>
-          <a onClick={()=>{setDay(4)}}>o</a>
-          <a onClick={()=>{setDay(5)}}>o</a>
+    <div className="forecast">
+      <div className="forecast-buttons-container">
+        <div className="forecast-line" ></div>
+        <div className="forecast-buttons">
+          {forecast[0].length > 0 && <a className="day-button" onClick={()=>{setDay(0)}}></a>}
+          <a className="day-button" className="day-button" onClick={()=>{setDay(1)}}></a>
+          <a className="day-button" onClick={()=>{setDay(2)}}></a>
+          <a className="day-button" onClick={()=>{setDay(3)}}></a>
+          <a className="day-button" onClick={()=>{setDay(4)}}></a>
+          {forecast[5].length > 0 && <a className="day-button" onClick={()=>{setDay(5)}}></a>}
         </div>
-        <div></div>
+        <div className="forecast-line"></div>
       </div>
-      <div>
+      <div className="forecast-day-container">
         {forecast[day].map((x) => {
           return (
-          <div key={x.dt}>
-            <img src={x.weather[0].icon+".svg"}/>
-            <section>
-              <h2>{x.dt_txt.slice(-8, -3)}</h2>
-              <p>{convertTemp(x.main.temp)}</p>
+          <div className="forecast-day" key={x.dt}>
+            <img className="forecast-image" src={x.weather[0].icon+".svg"}/>
+            <section className="forecast-text">
+              <h2 className="forecast-time">{x.dt_txt.slice(-8, -3)}</h2>
+              <p className="forecast-temperature">{convertTemp(x.main.temp)}</p>
             </section>
           </div>)
         })}

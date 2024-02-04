@@ -1,39 +1,38 @@
+import "./Current.css";
+
 export default function Current({current, convertTemp}) {
   return (
-    <div>
-      <div>
-        <img src={current.weather[0].icon+".svg"} alt="weather-icon"/>
-        <section>
-          <h1>{convertTemp(current.main.temp)}</h1>
-          <p>{current.weather[0].main}</p>
-          <p>
-            <span>{convertTemp(current.main.temp_min)}</span>
+    <div className="current">
+      <div className="current-main">
+        <img className="current-image" src={current.weather[0].icon+".svg"} alt="weather-icon"/>
+        <section className="current-main-text">
+          <h1 className="current-temperature">{convertTemp(current.main.temp)}</h1>
+          <p className="current-weather">{current.weather[0].main}</p>
+          <p className="current-temperature-range">
+            <span className="current-temperature-min">{convertTemp(current.main.temp_min)}</span>
             /
-            <span>{convertTemp(current.main.temp_max)}</span></p>
-
+            <span className="current-temperature-max">{convertTemp(current.main.temp_max)}</span></p>
         </section>
       </div>
-      <div>
-        <section>
-          <h2>FEELS LIKE <span>{convertTemp(current.main.feels_like)}</span></h2>
-          <div>
-            <p>{current.wind.speed}</p>
-            <p>WIND</p>
-          </div>
-          <div>
-            <p>{current.main.humidity}</p>
-            <p>HUMIDITY</p>
-          </div>
-          <div>
-            <p>{current.main.pressure}</p>
-            <p>PRESSURE</p>
-          </div>
-          <div>
-            <p>{current.visibility}</p>
-            <p>VISIBILITY</p>
-          </div>
+      <section className="current-table">
+        <h2 className="current-feels-text">FEELS LIKE <span className="current-feels-temperature">{convertTemp(current.main.feels_like)}</span></h2>
+        <section className="current-table-data">
+          <h3>{current.wind.speed}</h3>
+          <p>WIND</p>
         </section>
-      </div>
+        <section className="current-table-data">
+          <h3>{current.main.humidity}</h3>
+          <p>HUMIDITY</p>
+        </section>
+        <section className="current-table-data">
+          <h3>{current.main.pressure}</h3>
+          <p>PRESSURE</p>
+        </section>
+        <section className="current-table-data">
+          <h3>{current.visibility}</h3>
+          <p>VISIBILITY</p>
+        </section>
+      </section>
     </div>
   )
 }

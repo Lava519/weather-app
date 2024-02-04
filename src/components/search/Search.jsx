@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { geoDB } from "../../api.js"
+import "./Search.css"
+
 export default function Search({getWeather}) {
   const DEBOUNCE = 1000;
 
@@ -52,14 +54,14 @@ export default function Search({getWeather}) {
   }
 
   return (
-   <>
+   <div className="search">
       <input onKeyPress={handleKeyPress} onChange={handleSearchChange} type="text" id="search" />
       <div id="dropdown">
         {cityData.length > 0 && cityData.map((x) => {
-          return ( <p onClick={()=>{submitCityData(x)}} key={x.id}>{x.name}</p> )
+          return ( <p className="search-city" onClick={()=>{submitCityData(x)}} key={x.id}>{x.name} <span className="search-country">{x.country}</span></p> )
         })}
       </div>
-      {currentCity && <p>{currentCity}</p>}
-   </>
+      {currentCity && <p className="searched-city">{currentCity}</p>}
+   </div>
   )
 }

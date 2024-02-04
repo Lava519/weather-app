@@ -1,0 +1,28 @@
+.current {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.current-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.current-image {
+  max-width: 512px;
+  margin-right: 2em;
+}
+
+.current-table {
+  min-width: 300px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
+}
+
+.current-feels-text {
+  grid-column-start: span 2;
+}
