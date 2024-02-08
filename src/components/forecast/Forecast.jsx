@@ -23,7 +23,9 @@ export default function Forecast({forecast, convertTemp}) {
         {forecast[day].map((x) => {
           return (
           <div className="forecast-day" key={x.dt}>
-            <img className="forecast-image" src={x.weather[0].icon+".svg"}/>
+            <div className="forecast-image-container">
+              <img className="forecast-image" src={x.weather[0].icon+".svg"}/>
+            </div>
             <section className="forecast-text">
               <h2 className="forecast-time">{x.dt_txt.slice(-8, -3)}</h2>
               <p className="forecast-temperature">{convertTemp(x.main.temp)}</p>

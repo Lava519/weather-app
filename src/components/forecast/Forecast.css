@@ -39,10 +39,30 @@
 }
 
 .forecast-image {
-  max-width: 100%;
+  width: 100%;
 }
 
 .forecast-day {
   text-align: center;
-  max-width: 10%;
+  margin: 0 20px;
+  max-width: 150px;
 }
+
+
+@media screen and (max-width: 1200px) {
+  .forecast-day-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .forecast-day-container {
+    grid-template-columns: auto auto;
+    grid-template-rows: none;
+  }
+}
+

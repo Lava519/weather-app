@@ -55,7 +55,7 @@ export default function Search({getWeather}) {
 
   return (
    <div className="search">
-      <input onKeyPress={handleKeyPress} onChange={handleSearchChange} type="text" id="search" />
+      <input onKeyPress={handleKeyPress} onChange={handleSearchChange} placeholder="Search for city" type="text" id="search" />
       <div id="dropdown">
         {cityData.length > 0 && cityData.map((x) => {
           return ( <p className="search-city" onClick={()=>{submitCityData(x)}} key={x.id}>{x.name} <span className="search-country">{x.country}</span></p> )

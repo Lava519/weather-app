@@ -53,11 +53,11 @@ function App() {
   }
 
   return (
-    <>
+    <div className="main">
       <Search getWeather={getWeather}></Search>
       {current && <Current current={current} convertTemp={convertTemp}></Current>}
       {forecast && <Forecast forecast={forecast} convertTemp={convertTemp}></Forecast>}
-    </>
+    </div>
   )
 }
 
