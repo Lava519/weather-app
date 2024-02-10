@@ -3,14 +3,13 @@
   margin: 0 auto;
 }
 
-.main {
+.flex {
   display: flex;
   flex-direction: column;
 }
 
 @media screen and (min-width: 800px) {
-  .main {
-    height: 100vh;
+  .flex {
     justify-content: space-around;
   }
 }

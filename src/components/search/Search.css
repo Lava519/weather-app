@@ -1,9 +1,11 @@
+:root{
+  --search-margin: 20px;
+  --search-font-size: 1.5rem;
+  --search-height: 40px;
+  --dropdown-padding-top: 30px;
+} 
 .search {
   position: relative;
-}
-
-.search > * {
-  padding: 4px;
 }
 
 .search-city {
@@ -38,9 +40,9 @@
   background-color: #444;
   border: none;
   border-radius: 10px;
-  height: 40px;
-  margin-top: 20px;
-  font-size: 1.5rem;
+  height: var(--search-height); 
+  margin-top: var(--search-margin);
+  font-size: var(--search-font-size);
 }
 
 #search:focus {
@@ -50,13 +52,13 @@
 #dropdown {
   border-radius: 10px;
   background-color: #444;
-  padding-top: 30px;
+  padding-top: var(--dropdown-padding-top);
   z-index: 2;
   position: absolute;
   left: 0;
   right: 0;
-  top: 20px;
+  top: calc(var(--search-margin)+var(--search-height));
   width: 80%;
-  margin: 0 auto;
+  margin: calc(var(--dropdown-padding-top) * -1) auto 0 auto;
 }
 

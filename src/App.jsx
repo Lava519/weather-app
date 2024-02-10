@@ -9,6 +9,7 @@ function App() {
   const [current, setCurrent] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [celsius, setCelsius] = useState(true);
+  const [flex, setFlex] = useState("");
   function forecastSetup(f) {
     let forecastDivided = new Array(6);
     for (let i = 0; i < forecastDivided.length; i++)
@@ -35,11 +36,10 @@ function App() {
     try {
       const url = fetchOpenWeather(location);
       let response = await fetch(url);
-      console.log(response);
       if ( response.status == "200") {
         let data = await response.json();
         setCurrent(data.list[0]);
-        console.log(data);
+        setFlex("flex");
         forecastSetup(data.list);
       }
     }
@@ -53,7 +53,7 @@ function App() {
   }
 
   return (
-    <div className="main">
+    <div className={"main" + " " + flex}>
       <Search getWeather={getWeather}></Search>
       {current && <Current current={current} convertTemp={convertTemp}></Current>}
       {forecast && <Forecast forecast={forecast} convertTemp={convertTemp}></Forecast>}
